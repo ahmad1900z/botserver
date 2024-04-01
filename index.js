@@ -16,8 +16,12 @@ client.on('channelCreate', (channel) => {
     if (channel.parentId === ticketCategoryID) {
       // تأخير إرسال الرسالة لمدة 5 ثوانٍ
       setTimeout(() => {
-        channel.send('أهلاً بك في قناة التذاكر، الرجاء كتابة الأمر المطلوب للمساعدة.');
-      }, 2000); // 5000 مللي ثانية تساوي 5 ثوانٍ
+        const embed = new MessageEmbed()
+          .setDescription(`من فضلك قم بكتابة اسم التصميم لمعرفة السعر`)
+          .setColor('#0099ff');
+
+        channel.send({ embeds: [embed] });
+      }, 2000); // 2000 مللي ثانية تساوي 2 ثانية
     }
   }
 });
@@ -29,11 +33,11 @@ client.on('messageCreate', (message) => {
   // التأكد من أن الرسالة في قناة تنتمي إلى الفئة المحددة
   if (message.channel.parentId === ticketCategoryID) {
     // الرد التلقائي
-    if (message.content.toLowerCase() === 'مرحبا') {
+    if (message.content.toLowerCase() === 'بلاك ماركت v9') {
       const embed = new MessageEmbed()
-        .setTitle('مرحبا كيف يمكنني مساعدتك؟')
+        .setTitle('سعر بلاك ماركت v9 \n 250 $')
         .setColor('#0099ff')
-        .setImage('https://cdn.discordapp.com/attachments/880814335964876831/880814482467741726/XD_7.gif?ex=66193ee9&is=6606c9e9&hm=adcc0dc88295eb9c6c4b224f15e1ecb00ed58e432ec67250614d3d51f3fe31de&'); // قم بتغيير الرابط إلى رابط الصورة الفعلي
+        .setImage('https://cdn.discordapp.com/attachments/825483046714867724/1222712213651980389/image.png?ex=6617367c&is=6604c17c&hm=0b5b30c45f6603817e513c0dec29eadd5a5b47cccb0dbd0a8e377c1d9c736f20&'); // قم بتغيير الرابط إلى رابط الصورة الفعلي
 
       message.reply({ embeds: [embed] });
     }
